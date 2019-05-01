@@ -34,6 +34,7 @@ public class LineItem implements IValidated {
     private String size;
     private Date deliveredAt;
     private String deliveredTo;
+    private RegistryType registryType;
 
 
     public LineItem(double price, int quantity, String title) {
@@ -283,6 +284,10 @@ public class LineItem implements IValidated {
 	public void setDeliveredTo(String deliveredTo) {
 		this.deliveredTo = deliveredTo;
 	}
+
+	public RegistryType getRegistryType() { return registryType; }
+
+	public void setRegistryType(RegistryType registryType) { this.registryType = registryType; }
 
 	
 

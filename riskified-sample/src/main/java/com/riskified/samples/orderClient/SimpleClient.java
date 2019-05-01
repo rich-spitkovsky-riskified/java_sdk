@@ -50,7 +50,7 @@ public class SimpleClient {
 
     private static Order generateOrder() {
         Order order = new Order();
-        order.setId("19191912");
+        order.setId("1919191242201");
         order.setName("#1234");
         order.setEmail("great.customer@example.com");
         order.setCreatedAt(new Date(114, 01, 10, 11, 00, 00));
@@ -73,6 +73,7 @@ public class SimpleClient {
         order.setCustomer(customer);
 
         LineItem lineItem = new LineItem(200, 4, "ACME Spring", "AAA2");
+        lineItem.setRegistryType(RegistryType.other);
         
         TravelLineItem travelLineItem = new TravelLineItem(340, 1, "Flight from Israel to France", "211", "B11", 1, 1);
         travelLineItem.setDeparturePortCode("LLBG");
