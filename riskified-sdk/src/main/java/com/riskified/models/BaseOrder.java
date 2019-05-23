@@ -67,6 +67,7 @@ public abstract class BaseOrder implements IValidated {
     private ChargeFreePaymentDetails chargeFreePaymentDetails;
     private SubmissionReason submissionReason;
     private Custom custom;
+    private AuthenticationResult authenticationResult;
 
     public BaseOrder() {
     }
@@ -639,5 +640,9 @@ public abstract class BaseOrder implements IValidated {
     public void setCustom(Custom custom) {
         this.custom = custom;
     }
+
+    public AuthenticationResult getAuthenticationResult() { return authenticationResult; }
+
+    public void setAuthenticationResult(AuthenticationResult authenticationResult) { this.authenticationResult = authenticationResult; }
 
 }
