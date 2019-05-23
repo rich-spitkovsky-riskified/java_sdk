@@ -1,5 +1,6 @@
 package com.riskified.notifications;
 
+import com.riskified.models.AuthenticationType;
 import com.riskified.models.Custom;
 
 public class Notification {
@@ -22,6 +23,8 @@ public class Notification {
         private String decisionCode;
         private String category;
         private Custom custom;
+        private Double score;
+        private AuthenticationType authenticationType;
 
         public String getId() {
             return id;
@@ -76,5 +79,13 @@ public class Notification {
         public void setCustom(Custom custom) {
             this.custom = custom;
         }
+
+        public Double getScore() { return score; }
+
+        public void setScore(Double score) { this.score = score; }
+
+        public AuthenticationType getAuthenticationType() { return authenticationType; }
+
+        public void setAuthenticationType(AuthenticationType authenticationType) { this.authenticationType = authenticationType; }
     }
 }
