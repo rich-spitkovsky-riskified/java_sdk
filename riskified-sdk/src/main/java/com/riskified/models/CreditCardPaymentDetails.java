@@ -11,6 +11,11 @@ public class CreditCardPaymentDetails implements IPaymentDetails {
     private String authorizationId;
     private AuthorizationError authorizationError;
     private String cardholderName;
+    private String type;
+    private String id;
+    private String gateway;
+    private String acquirerBin;
+    private String mid;
 
     public CreditCardPaymentDetails(String creditCardBin, String avsResultCode, String cvvResultCode, String creditCardNumber, String creditCardCompany) {
         this.creditCardBin = creditCardBin;
@@ -91,6 +96,24 @@ public class CreditCardPaymentDetails implements IPaymentDetails {
 		this.cardholderName = cardholderName;
 	}
 
+    public String getType() { return type;}
 
+    public void setType(String type) { this.type = type;}
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id;}
+
+    public String getGateway() { return gateway; }
+
+    public void setGateway(String gateway) { this.gateway = gateway; }
+
+    public String getAcquirerBin() { return acquirerBin; }
+
+    public void setAcquirerBin(String acquirerBin) { this.acquirerBin = acquirerBin; }
+
+    public String getMid() { return mid; }
+
+    public void setMid(String mid) { this.mid = mid; }
 
 }
