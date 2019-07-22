@@ -24,7 +24,6 @@ public class LineItem implements IValidated {
     private Boolean taxable;
     private Boolean productExists;
     private List<Attributes> properties;
-    private List<TaxLine> taxLines;
 	private String category;
     private String subCategory;
     private String condition;
@@ -40,7 +39,6 @@ public class LineItem implements IValidated {
 
     public LineItem(double price, int quantity, String title) {
         this.properties = new ArrayList<Attributes>();
-        this.taxLines = new ArrayList<TaxLine>();
         this.price = price;
         this.quantity = quantity;
         this.title = title;
@@ -48,7 +46,6 @@ public class LineItem implements IValidated {
     
     public LineItem(double price, int quantity, String title, String productId) {
         this.properties = new ArrayList<Attributes>();
-        this.taxLines = new ArrayList<TaxLine>();
         this.price = price;
         this.quantity = quantity;
         this.title = title;
@@ -230,14 +227,6 @@ public class LineItem implements IValidated {
 
     public void setProperties(List<Attributes> properties) {
         this.properties = properties;
-    }
-
-    public List<TaxLine> getTaxLines() {
-        return taxLines;
-    }
-
-    public void setTaxLines(List<TaxLine> taxLines) {
-        this.taxLines = taxLines;
     }
     
 	public String getBrand() {

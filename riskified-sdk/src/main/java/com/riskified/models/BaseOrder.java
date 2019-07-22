@@ -59,7 +59,6 @@ public abstract class BaseOrder implements IValidated {
     private List<DiscountCode> discountCodes;
     private List<ShippingLine> shippingLines;
     private List<Attributes> noteAttributes;
-    private List<TaxLine> taxLines;
     private DecisionDetails decision;
 	private List<Passenger> passengers;
 	private Map<String, Object> additionalData;
@@ -565,14 +564,6 @@ public abstract class BaseOrder implements IValidated {
 
     public void setNoteAttributes(List<Attributes> noteAttributes) {
         this.noteAttributes = noteAttributes;
-    }
-
-    public List<TaxLine> getTaxLines() {
-        return taxLines;
-    }
-
-    public void setTaxLines(List<TaxLine> taxLines) {
-        this.taxLines = taxLines;
     }
 
     public DecisionDetails getDecision() {
