@@ -11,15 +11,12 @@ public class Customer implements IValidated {
     private Date createdAt;
     private Date updatedAt;
     private String id;
-    private String groupId;
     private String groupName;
     private String note;
     private Integer ordersCount;
     private Boolean verifiedEmail;
     private Boolean acceptsMarketing;
     private String lastOrderId;
-    private String lastOrderName;
-    private String state;
     private Float totalSpent;
     private String tags;
     private Address defaultAddress;
@@ -108,14 +105,6 @@ public class Customer implements IValidated {
         this.id = id;
     }
 
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
     public String getGroupName() {
         return groupName;
     }
@@ -158,22 +147,6 @@ public class Customer implements IValidated {
 
     public void setLastOrderId(String lastOrderId) {
         this.lastOrderId = lastOrderId;
-    }
-
-    public String getLastOrderName() {
-        return lastOrderName;
-    }
-
-    public void setLastOrderName(String lastOrderName) {
-        this.lastOrderName = lastOrderName;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public Float getTotalSpent() {
