@@ -10,7 +10,6 @@ public class Address implements IValidated {
 	private Boolean verifiedPhone;
     private String country;
     private String countryCode;
-    private String name;
     private String company;
     private String address1;
     private String address2;
@@ -89,14 +88,6 @@ public class Address implements IValidated {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCompany() {
