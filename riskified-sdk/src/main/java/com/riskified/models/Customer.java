@@ -11,14 +11,10 @@ public class Customer implements IValidated {
     private Date createdAt;
     private Date updatedAt;
     private String id;
-    private String groupName;
     private String note;
     private Integer ordersCount;
     private Boolean verifiedEmail;
-    private Boolean acceptsMarketing;
-    private String lastOrderId;
     private Float totalSpent;
-    private String tags;
     private Address defaultAddress;
     private List<SocialDetails> social;
     private Gender gender; // male or female
@@ -105,14 +101,6 @@ public class Customer implements IValidated {
         this.id = id;
     }
 
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     public String getNote() {
         return note;
     }
@@ -133,36 +121,12 @@ public class Customer implements IValidated {
         return verifiedEmail;
     }
 
-    public Boolean getAcceptsMarketing() {
-        return acceptsMarketing;
-    }
-
-    public void setAcceptsMarketing(Boolean acceptsMarketing) {
-        this.acceptsMarketing = acceptsMarketing;
-    }
-
-    public String getLastOrderId() {
-        return lastOrderId;
-    }
-
-    public void setLastOrderId(String lastOrderId) {
-        this.lastOrderId = lastOrderId;
-    }
-
     public Float getTotalSpent() {
         return totalSpent;
     }
 
     public void setTotalSpent(Float totalSpent) {
         this.totalSpent = totalSpent;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public Address getDefaultAddress() {
