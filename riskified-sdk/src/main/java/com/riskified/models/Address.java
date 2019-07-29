@@ -137,7 +137,7 @@ public class Address implements IValidated {
     public void setZip(String zip) {
         this.zip = zip;
     }
-    // ****UNLESS USED IN ATO, SET TO REMOVE
+
     public Float getLatitude() {
         return latitude;
     }
@@ -153,7 +153,7 @@ public class Address implements IValidated {
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
-    // ***********************************
+    
 	public Boolean getVerifiedPhone() {
 		return verifiedPhone;
 	}
