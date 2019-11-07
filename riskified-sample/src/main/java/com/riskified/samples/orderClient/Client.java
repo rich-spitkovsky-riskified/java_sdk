@@ -34,6 +34,8 @@ public class Client {
 
         DecisionOrder decisionOrder = generateDecisionOrder(order);
 
+        ChargebackOrder chargebackOrder = generateChargebackOrder(order);
+
         ArrayOrders orders = generateHistoricalOrders(order);
 
         try {
@@ -129,6 +131,14 @@ public class Client {
             System.out.println("status: " + resDecision.getOrder().getStatus());
             System.out.println("description: " + resDecision.getOrder().getDescription());
 
+              Response resChargeback = client.chargebackOrder(chargebackOrder);
+
+              System.out.println("-----------------------------------------");
+              System.out.println("Chargeback order response:");
+              System.out.println("id: " + resChargeback.getOrder().getId());
+              System.out.println("status: " + resChargeback.getOrder().getStatus());
+              System.out.println("description: " + resChargeback.getOrder().getDescription());
+
 
         } catch (RiskifiedError e) {
         	printError(e);
@@ -198,18 +208,68 @@ public class Client {
 
     private static FulfillmentOrder generateFulfillmentOrder(Order order) throws ParseException {
         List<FulfillmentDetails> fulfillments = new ArrayList<FulfillmentDetails>();
-        FulfillmentDetails fulfilmentDetails = new FulfillmentDetails("33", parseDate("15-12-2016 00:00:00.0"), "success");
+        FulfillmentDetails fulfillmentDetails = new FulfillmentDetails("33", parseDate("15-12-2016 00:00:00.0"), "success");
 
-        fulfilmentDetails.setLineItems(Arrays.asList(
+        fulfillmentDetails.setLineItems(Arrays.asList(
         new LineItem(100, 1, "ACME Widget", "101"),
         new LineItem(200, 4, "ACME Spring", "202")));
 
-        fulfilmentDetails.setTrackingCompany("UPS");
-        fulfilmentDetails.setTrackingNumbers("11X63b");
+        fulfillmentDetails.setTrackingCompany("UPS");
+        fulfillmentDetails.setTrackingNumbers("11X63b");
 
-        fulfillments.add(fulfilmentDetails);
+        fulfillments.add(fulfillmentDetails);
         FulfillmentOrder fulfillmentOrder = new FulfillmentOrder(order.getId(), fulfillments);
         return fulfillmentOrder;
+    }
+
+    private static ChargebackOrder generateChargebackOrder(Order order) throws ParseException {
+        ChargebackOrder chargebackOrder = new ChargebackOrder();
+        chargebackOrder.setId(order.getId());
+
+        List<FulfillmentDetails> fulfillments = new ArrayList<FulfillmentDetails>();
+        FulfillmentDetails fulfillmentDetails1 = new FulfillmentDetails("33", parseDate("15-12-2016 00:00:00.0"), "success");
+
+        fulfillmentDetails1.setLineItems(Arrays.asList(
+                new LineItem(100, 1, "ACME Widget", "101"),
+                new LineItem(200, 4, "ACME Spring", "202")));
+
+        fulfillmentDetails1.setTrackingCompany("UPS");
+        fulfillmentDetails1.setTrackingNumbers("11X63b");
+
+
+        FulfillmentDetails fulfillmentDetails2 = new FulfillmentDetails("44", parseDate("17-11-2019 00:00:00.0"), "success");
+
+        fulfillmentDetails2.setLineItems(Arrays.asList(
+                new LineItem(40, 1, "ACME Widget Watch", "101"),
+                new LineItem(25, 4, "ACME Spring Flowers", "202")));
+
+        fulfillmentDetails2.setTrackingCompany("UPS");
+        fulfillmentDetails2.setTrackingNumbers("1738THX");
+
+        fulfillments.add(fulfillmentDetails1);
+        fulfillments.add(fulfillmentDetails2);
+
+        chargebackOrder.setFulfillment(fulfillments);
+
+        ChargebackDetails chargebackDetails = new ChargebackDetails();
+        chargebackDetails.setId("147");
+        chargebackDetails.setChargebackAmount(140.00);
+        chargebackDetails.setChargebackCurrency("USD");
+        chargebackDetails.setChargebackAt(parseDate("17-11-2019 00:00:00.0"));
+        chargebackDetails.setReasonCode("4863");
+        chargebackDetails.setGateway("Payment Processor");
+        chargebackDetails.setType("cb");
+
+        chargebackOrder.setChargebackDetails(chargebackDetails);
+
+        DisputeDetails disputeDetails = new DisputeDetails();
+        disputeDetails.setCaseID("11");
+        disputeDetails.setStatus("won");
+
+        chargebackOrder.setDisputeDetails(disputeDetails);
+
+
+        return chargebackOrder;
     }
 
     private static CheckoutOrder generateCheckoutOrder() throws ParseException {
@@ -304,7 +364,7 @@ public class Client {
         creditCardPaymentDetails.setId("1");
 
         order.setPaymentDetails(Arrays.asList(creditCardPaymentDetails));
-        
+
 
         Address address = new Address("John", "Doe", "108 Main Street", "NYC", "1234567", "United States");
         address.setCompany("Kansas Computers");
@@ -330,7 +390,7 @@ public class Client {
         return order;
     }
 
-    
+
     private static Order generateOrder() throws ParseException {
         Order order = new Order();
         order.setId("#12000000000345");
@@ -357,7 +417,7 @@ public class Client {
 
         LineItem lineItem = new LineItem(200, 4, "ACME Spring", "AAA2");
         lineItem.setColor("black");
-        
+
         TravelLineItem travelLineItem = new TravelLineItem(340, 1, "Flight from Israel to France", "211", "B11", 1, 1);
         travelLineItem.setDeparturePortCode("LLBG");
         travelLineItem.setDepartureCountryCode("IL");
@@ -371,16 +431,16 @@ public class Client {
         travelLineItem.setCarrierCode("AF");
         travelLineItem.setCarrierName("Air France");
         travelLineItem.setRequiresShipping(false);
-        
+
         order.setShippingLines(Arrays.asList(new ShippingLine(123, "free")));
         CreditCardPaymentDetails cr = new CreditCardPaymentDetails("370002", "y", "n", "xxxx-xxxx-xxxx-1234", "VISA");
         cr.setInstallmentMonths(6);
         cr.setPaymentPlan("at&t");
-        
-        
+
+
         order.setPaymentDetails(Arrays.asList(new CreditCardPaymentDetails("370002", "y", "n", "xxxx-xxxx-xxxx-1234", "VISA"), cr ));
 
-        
+
         order.setLineItems(Arrays.asList(new LineItem(100, 1, "ACME Widget", "101"), lineItem, travelLineItem));
 
         Passenger passenger = new Passenger("john","smith");
@@ -393,18 +453,18 @@ public class Client {
         passenger.setDocumentIssueDate(parseDate("15-12-2016 00:00:00.0"));
         passenger.setDocumentExpirationDate(parseDate("15-12-2016 00:00:00.0"));
         passenger.setPassengerType("Adult");
-        
+
         order.setPassengers(Arrays.asList(passenger));
-        
+
         Seller seller = new Seller(customer);
         seller.setPriceNegotiated(true);
         seller.setStartingPrice(400);
-        
-        
+
+
         order.setDiscountCodes(Arrays.asList(new DiscountCode(19.95, "12")));
 
         order.setShippingLines(Arrays.asList(new ShippingLine(123, "free")));
-        
+
 
 
         order.setPaymentDetails(Arrays.asList(new CreditCardPaymentDetails("370002", "y", "n", "xxxx-xxxx-xxxx-1234", "VISA") ));
@@ -428,7 +488,7 @@ public class Client {
         address.setProvinceCode("NY");
         address.setZip("64155");
         order.setShippingAddress(address);
-        
+
         return order;
     }
 
