@@ -2,6 +2,7 @@ package com.riskified.samples.orderClient;
 import java.io.IOException;
 import java.util.*;
 
+import com.riskified.Environment;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 
@@ -58,6 +59,7 @@ public class SimpleClient {
         order.setCurrency("CAD");
         order.setUpdatedAt(new Date(114, 01, 10, 11, 00, 00));
         order.setGateway("mypaymentprocessor");
+        order.setSource(Source.web);
         order.setBrowserIp("124.185.86.55");
         order.setTotalPrice(120.22);
         order.setTotalDiscounts(5);

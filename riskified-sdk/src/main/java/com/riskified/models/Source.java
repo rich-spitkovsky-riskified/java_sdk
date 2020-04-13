@@ -25,6 +25,10 @@ public enum Source {
     @SerializedName("unknown")
     unknown,
     @SerializedName("other")
-    other
+    other,
+    @SerializedName("mobile_app_ios")
+    mobileAppIos,
+    @SerializedName("mobile_app_android")
+    mobileAppAndroid
 
 }

@@ -36,7 +36,7 @@ public abstract class BaseOrder implements IValidated {
     private String landingSite;
     private String landingSiteRef;
     private String locationId;
-    private String source;
+    private Source source;
     private String sourceIdentifier;
     private String sourceName;
     private String sourceUrl;
@@ -382,11 +382,11 @@ public abstract class BaseOrder implements IValidated {
         this.locationId = locationId;
     }
 
-    public String getSource() {
+    public Source getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(Source source) {
         this.source = source;
     }
 
